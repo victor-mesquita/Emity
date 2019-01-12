@@ -12,10 +12,10 @@ protocol EmityProtocol {
     func on(eventName: String, fn: @escaping (() -> ())) -> Void
     func on(eventName: String, fn: @escaping ((_ data: Any?) -> ())) -> Void
     func emit(eventName: String) -> Void
-    func emit(eventName: String, _ data: Any?) -> Void
+    func emit(eventName: String, data: Any?) -> Void
 }
 
-class Emity {
+class EventEmitter : EmityProtocol {
     private var _events = Dictionary<String, EventListener>()
     private var eventsCount: Int = 0
     
