@@ -24,35 +24,35 @@ class EmityTests: XCTestCase {
     }
     
     func testShouldWorkWithNilData() {
-        emity?.on("dataNil", fn: { data in
+        emity?.on("dataNil", callback: { data in
             XCTAssertTrue(data == nil)
         })
         
-        emity?.emit("dataNil", data: nil)
+        emity?.emit("dataNil", withData: nil)
     }
     
     func testShouldWorkWithNumberData() {
-        emity?.on("dataInt", fn: { data in
+        emity?.on("dataInt", callback: { data in
             XCTAssertTrue((data as? Int) == 0)
         })
         
-        emity?.on("dataDouble", fn: { data in
+        emity?.on("dataDouble", callback: { data in
             XCTAssertTrue((data as? Double) == 0.0)
         })
         
-        emity?.emit("dataInt", data: 0)
-        emity?.emit("dataDouble", data: 0.0)
+        emity?.emit("dataInt", withData: 0)
+        emity?.emit("dataDouble", withData: 0.0)
     }
     
     
     func testShouldEmitToAllListenersWithNoData() {
         var witness: [Int] = [Int]()
         
-        emity?.on("moreThanOneListener", fn: {
+        emity?.on("moreThanOneListener", callback: {
             witness.append(1)
         })
         
-        emity?.on("moreThanOneListener", fn: {
+        emity?.on("moreThanOneListener", callback: {
             witness.append(2)
         })
         
@@ -65,19 +65,19 @@ class EmityTests: XCTestCase {
     func testShouldEmitToAllListenersWithData() {
         var witness: [Int] = [Int]()
         
-        emity?.on("moreThanOneListenerWithData", fn: { data in
+        emity?.on("moreThanOneListenerWithData", callback: { data in
             if(data != nil) {
                 witness.append(2)
             }
         })
         
-        emity?.on("moreThanOneListenerWithData", fn: { data in
+        emity?.on("moreThanOneListenerWithData", callback: { data in
             if(data != nil) {
                 witness.append(2)
             }
         })
         
-        emity?.emit("moreThanOneListenerWithData", data: 0)
+        emity?.emit("moreThanOneListenerWithData", withData: 0)
         
         XCTAssertTrue(witness.count == 2)
     }
