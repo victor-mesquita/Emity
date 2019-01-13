@@ -24,9 +24,26 @@
 </div>
 
 ## Table of Contents
-- [Example](#example)
 - [Installation](#installation)
-- [Support](#support)
+- [Example](#example)
+- [Contributing](#contributing)
+
+## Installation
+
+### Cocoapods
+
+Add Emity to Podfile
+```ruby
+$  pod 'Emity', '~> 0.0'
+```
+
+Enter in project folder and Install dependencies
+```sh
+$ pod install
+```
+
+### Carthage
+#### Soon
 
 ## Example
 
@@ -47,6 +64,10 @@ class MyClass {
 
     func completeMyWork(){
         eventEmitter.emit('complete')
+    }
+
+    func someClickAction(){
+        completeMyWork()
     }
 }
 ```
@@ -70,5 +91,13 @@ class MyClass {
     func completeMyWork(){
         eventEmitter.emit('complete', data: "Hello")
     }
+
+    func someClickAction(){
+        completeMyWork()
+    }
 }
 ```
+
+## Contributing
+
+### Soon
