@@ -11,7 +11,7 @@ import Foundation
 public class Event {
     let fn: ((_ data: Any?) -> ())?
     
-    init(fn: @escaping ((_ data: Any?) -> ())) {
+    public init(fn: @escaping ((_ data: Any?) -> ())) {
         self.fn = fn
     }
 }

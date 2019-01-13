@@ -20,7 +20,7 @@ public class EventListener {
         }
     }
     
-    init(eventName: String) {
+    public init(eventName: String) {
         self._eventName = eventName
     }
     

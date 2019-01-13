@@ -15,9 +15,11 @@ public protocol EmityProtocol {
     func emit(eventName: String, data: Any?) -> Void
 }
 
-open class EventEmitter : EmityProtocol {
+open class Emity : EmityProtocol {
     private var _events = Dictionary<String, EventListener>()
     private var eventsCount: Int = 0
+    
+    public init() {}
     
     public func on(eventName: String, fn: @escaping (() -> ())) -> Void {
         on(eventName: eventName, fn: { _ in

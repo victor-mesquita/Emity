@@ -11,12 +11,12 @@ import XCTest
 import Emity
 
 class EmityTests: XCTestCase {
-    var emity: EventEmitter? = nil
+    var emity: Emity? = nil
     
     override func setUp() {
         super.setUp()
         
-        emity = EventEmitter()
+        emity = Emity()
     }
     
     override func tearDown() {
