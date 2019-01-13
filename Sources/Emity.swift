@@ -8,24 +8,24 @@
 
 import Foundation
 
-protocol EmityProtocol {
+public protocol EmityProtocol {
     func on(eventName: String, fn: @escaping (() -> ())) -> Void
     func on(eventName: String, fn: @escaping ((_ data: Any?) -> ())) -> Void
     func emit(eventName: String) -> Void
     func emit(eventName: String, data: Any?) -> Void
 }
 
-class EventEmitter : EmityProtocol {
+open class EventEmitter : EmityProtocol {
     private var _events = Dictionary<String, EventListener>()
     private var eventsCount: Int = 0
     
-    func on(eventName: String, fn: @escaping (() -> ())) -> Void {
+    public func on(eventName: String, fn: @escaping (() -> ())) -> Void {
         on(eventName: eventName, fn: { _ in
             fn()
         });
     }
     
-    func on(eventName: String, fn: @escaping ((_ data: Any?) -> ())) -> Void {
+    public func on(eventName: String, fn: @escaping ((_ data: Any?) -> ())) -> Void {
         let eventFn = Event(fn: fn);
         
         addListener(eventName: eventName, event: eventFn)
@@ -43,7 +43,7 @@ class EventEmitter : EmityProtocol {
         }
     }
     
-    func emit(eventName: String, data: Any?) -> Void {
+    public func emit(eventName: String, data: Any?) -> Void {
         if let eventListener = self._events[eventName] {
             for event in eventListener.listeners {
                 if let methodToCall = event.fn {
@@ -53,7 +53,7 @@ class EventEmitter : EmityProtocol {
         }
     }
     
-    func emit(eventName: String) -> Void {
+    public func emit(eventName: String) -> Void {
         emit(eventName: eventName, data: nil)
     }
 }

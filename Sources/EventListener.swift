@@ -8,7 +8,7 @@
 
 import Foundation
 
-class EventListener {
+public class EventListener {
     
     var listeners = [Event]()
     
@@ -24,7 +24,7 @@ class EventListener {
         self._eventName = eventName
     }
     
-    func add(event: Event) {
+    public func add(event: Event) {
         listeners.append(event)
     }
 }

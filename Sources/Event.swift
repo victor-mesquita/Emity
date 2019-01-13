@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Event {
+public class Event {
     let fn: ((_ data: Any?) -> ())?
     
     init(fn: @escaping ((_ data: Any?) -> ())) {
