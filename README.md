@@ -22,3 +22,53 @@
       alt="License" />
   </a>
 </div>
+
+## Table of Contents
+- [Example](#example)
+- [Installation](#installation)
+- [Support](#support)
+
+## Example
+
+### Basic usage
+```swift
+import Emity
+
+class MyClass {
+    let eventEmitter = Emity()
+
+    override func viewDidLoad(){
+        super.viewDidLoad()
+
+        eventEmitter.on('complete', {
+            debugPrint("Hey!! I completed my work!")
+        })
+    }
+
+    func completeMyWork(){
+        eventEmitter.emit('complete')
+    }
+}
+```
+
+### Passing data to listener
+```swift
+import Emity
+
+class MyClass {
+    let eventEmitter = Emity()
+
+    override func viewDidLoad(){
+        super.viewDidLoad()
+
+        eventEmitter.on('complete', { data in
+            debugPrint("Hey!! I completed my work!")
+            debugPrint("\(data) World!!!")
+        })
+    }
+
+    func completeMyWork(){
+        eventEmitter.emit('complete', data: "Hello")
+    }
+}
+```

@@ -24,39 +24,39 @@ class EmityTests: XCTestCase {
     }
     
     func testShouldWorkWithNilData() {
-        emity?.on(eventName: "dataNil", fn: { data in
+        emity?.on("dataNil", fn: { data in
             XCTAssertTrue(data == nil)
         })
         
-        emity?.emit(eventName: "dataNil", data: nil)
+        emity?.emit("dataNil", data: nil)
     }
     
     func testShouldWorkWithNumberData() {
-        emity?.on(eventName: "dataInt", fn: { data in
+        emity?.on("dataInt", fn: { data in
             XCTAssertTrue((data as? Int) == 0)
         })
         
-        emity?.on(eventName: "dataDouble", fn: { data in
+        emity?.on("dataDouble", fn: { data in
             XCTAssertTrue((data as? Double) == 0.0)
         })
         
-        emity?.emit(eventName: "dataInt", data: 0)
-        emity?.emit(eventName: "dataDouble", data: 0.0)
+        emity?.emit("dataInt", data: 0)
+        emity?.emit("dataDouble", data: 0.0)
     }
     
     
     func testShouldEmitToAllListenersWithNoData() {
         var witness: [Int] = [Int]()
         
-        emity?.on(eventName: "moreThanOneListener", fn: {
+        emity?.on("moreThanOneListener", fn: {
             witness.append(1)
         })
         
-        emity?.on(eventName: "moreThanOneListener", fn: {
+        emity?.on("moreThanOneListener", fn: {
             witness.append(2)
         })
         
-        emity?.emit(eventName: "moreThanOneListener")
+        emity?.emit("moreThanOneListener")
         
         XCTAssertTrue(witness.count == 2)
     }
@@ -65,19 +65,19 @@ class EmityTests: XCTestCase {
     func testShouldEmitToAllListenersWithData() {
         var witness: [Int] = [Int]()
         
-        emity?.on(eventName: "moreThanOneListenerWithData", fn: { data in
+        emity?.on("moreThanOneListenerWithData", fn: { data in
             if(data != nil) {
                 witness.append(2)
             }
         })
         
-        emity?.on(eventName: "moreThanOneListenerWithData", fn: { data in
+        emity?.on("moreThanOneListenerWithData", fn: { data in
             if(data != nil) {
                 witness.append(2)
             }
         })
         
-        emity?.emit(eventName: "moreThanOneListenerWithData", data: 0)
+        emity?.emit("moreThanOneListenerWithData", data: 0)
         
         XCTAssertTrue(witness.count == 2)
     }

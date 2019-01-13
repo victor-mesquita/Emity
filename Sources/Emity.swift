@@ -9,10 +9,10 @@
 import Foundation
 
 public protocol EmityProtocol {
-    func on(eventName: String, fn: @escaping (() -> ())) -> Void
-    func on(eventName: String, fn: @escaping ((_ data: Any?) -> ())) -> Void
-    func emit(eventName: String) -> Void
-    func emit(eventName: String, data: Any?) -> Void
+    func on(_ eventName: String, fn: @escaping (() -> ())) -> Void
+    func on(_ eventName: String, fn: @escaping ((_ data: Any?) -> ())) -> Void
+    func emit(_ eventName: String) -> Void
+    func emit(_ eventName: String, data: Any?) -> Void
 }
 
 open class Emity : EmityProtocol {
@@ -21,13 +21,13 @@ open class Emity : EmityProtocol {
     
     public init() {}
     
-    public func on(eventName: String, fn: @escaping (() -> ())) -> Void {
-        on(eventName: eventName, fn: { _ in
+    public func on(_ eventName: String, fn: @escaping (() -> ())) -> Void {
+        on(eventName, fn: { _ in
             fn()
         });
     }
     
-    public func on(eventName: String, fn: @escaping ((_ data: Any?) -> ())) -> Void {
+    public func on(_ eventName: String, fn: @escaping ((_ data: Any?) -> ())) -> Void {
         let eventFn = Event(fn: fn);
         
         addListener(eventName: eventName, event: eventFn)
@@ -45,7 +45,7 @@ open class Emity : EmityProtocol {
         }
     }
     
-    public func emit(eventName: String, data: Any?) -> Void {
+    public func emit(_ eventName: String, data: Any?) -> Void {
         if let eventListener = self._events[eventName] {
             for event in eventListener.listeners {
                 if let methodToCall = event.fn {
@@ -55,7 +55,7 @@ open class Emity : EmityProtocol {
         }
     }
     
-    public func emit(eventName: String) -> Void {
-        emit(eventName: eventName, data: nil)
+    public func emit(_ eventName: String) -> Void {
+        emit(eventName, data: nil)
     }
 }
