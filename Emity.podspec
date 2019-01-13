@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Emity"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "Simple event emitter for Swift"
   s.description  = <<-DESC
     Emity is a simple way to work with events in swift
