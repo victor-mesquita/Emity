@@ -57,7 +57,7 @@ class MyClass {
     override func viewDidLoad(){
         super.viewDidLoad()
 
-        eventEmitter.on('complete', {
+        eventEmitter.on('complete', callback: {
             debugPrint("Hey!! I completed my work!")
         })
     }
@@ -82,7 +82,7 @@ class MyClass {
     override func viewDidLoad(){
         super.viewDidLoad()
 
-        eventEmitter.on('complete', { data in
+        eventEmitter.on('complete', callback: { data in
             debugPrint("Hey!! I completed my work!")
             debugPrint("\(data) World!!!")
         })
